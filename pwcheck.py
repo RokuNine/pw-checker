@@ -39,6 +39,7 @@ def main(args):
   return 'Finished'
 '''
 
+# opens the key file to recognize the encryption
 with open('key.key', 'rb') as filekey:
   key = filekey.read()
 
@@ -48,18 +49,17 @@ fernet = Fernet(key)
 with open('./pwtext.txt', 'rb') as enc_file:
     encrypted = enc_file.read()
   
-# decrypting the file
 decrypted = fernet.decrypt(encrypted)
   
-# opening the file in write mode and
-# writing the decrypted data
+# opening the file in write mode and writing the decrypted data, this gets rid of the encryption
+# if this file needs to be run again the encrypter.py file must be ran first
 with open('./pwtext.txt', 'wb') as dec_file:
     dec_file.write(decrypted)
 
 
-#This function reads from a text file of passwords
+#This function reads from the text file of passwords
 def main():
-    with open('./pwtext.txt', mode='r') as pw_file:
+    with open('./pwtext.txt', 'rb') as pw_file:
         lines = pw_file.readlines()
         lines = [line.rstrip() for line in lines]
     for password in lines:
