@@ -64,7 +64,7 @@ except cryptography.fernet.InvalidToken:
 
 # This function reads from the text file of passwords
 def main():
-    with open('./pwtext.txt', 'rb') as pw_file:
+    with open('./pwtext.txt', mode='r') as pw_file:
         lines = pw_file.readlines()
         lines = [line.rstrip() for line in lines]
     for password in lines:
