@@ -1,6 +1,7 @@
 import requests
 import hashlib
 import sys
+from cryptography.fernet import Fernet
 
 #This function captures the api from a password checker website for use in later functions.
 def request_api_data(query_char):
@@ -38,7 +39,25 @@ def main(args):
   return 'Finished'
 '''
 
-#This function reads from a text file of passwords demonstrating the capability to check for
+with open('key.key', 'rb') as filekey:
+  key = filekey.read()
+
+fernet = Fernet(key)
+
+# opening the encrypted file
+with open('./pwtext.txt', 'rb') as enc_file:
+    encrypted = enc_file.read()
+  
+# decrypting the file
+decrypted = fernet.decrypt(encrypted)
+  
+# opening the file in write mode and
+# writing the decrypted data
+with open('./pwtext.txt', 'wb') as dec_file:
+    dec_file.write(decrypted)
+
+
+#This function reads from a text file of passwords
 def main():
     with open('./pwtext.txt', mode='r') as pw_file:
         lines = pw_file.readlines()
