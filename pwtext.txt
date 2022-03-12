@@ -5,3 +5,15 @@ hello
 Hello
 password
 apple
+q357werth
+4wer6klyhsertk
+o4w5q3tyjweklt
+hello
+Hello
+password
+Password
+Password123
+apple
+This is a password
+Password@password
+pass@word
